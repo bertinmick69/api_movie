@@ -7,12 +7,9 @@ describe("GET /api/movies", () => {
     expect(response.headers["content-type"]).toMatch(/json/);
     expect(response.status).toEqual(200);
   });
-});
+  it("should return no movie", async () => {
+    const response = await request(app).get("/api/movies/0");
 
-describe("GET /api/movies/:id", () => {
-  it("should return serie title ", async () => {
-    const response = await request(app).get("/api/movies");
-    expect(response.headers["content-type"]).toMatch(/json/);
-    expect(response.status).toEqual(200);
+    expect(response.status).toEqual(404);
   });
 });
